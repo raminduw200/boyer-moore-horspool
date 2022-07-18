@@ -1,5 +1,5 @@
-import timeit
 from tabulate import tabulate
+import matplotlib.pyplot as plt
 
 # -------------------------------
 # Author: Ramindu Walgama
@@ -53,4 +53,4 @@ if __name__ == '__main__':
             # results.append([line_no, code, name, matches, result:(x, y, ...)])
             results.append([i+1, line[0], line[1], matches, result])
     print(tabulate(results, headers, tablefmt="fancy_grid"))
-    print(tabulate([['Total Matches', total_matches]], ['Total Lines Found   ', len(results)], tablefmt="fancy_grid"))
+    print(tabulate([['Total Word Matches', total_matches]], ['Total Lines Found   ', len(results)], tablefmt="fancy_grid"))
