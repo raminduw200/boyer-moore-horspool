@@ -62,7 +62,7 @@ def horspool_search(text_, n_, pattern_, m_, shift_, result_):
 
 
 if __name__ == '__main__':
-    results = []
+    results = {}
     total_matches = 0
 
     # Read dataset
@@ -71,27 +71,37 @@ if __name__ == '__main__':
     f.close()
 
     # input and lower case since search is incasesensitive
-    pattern = input("Enter a search string: ").lower()
-    m = len(pattern)
+    patterns = input("Enter search string/strings separated by ','(Example: Imaging,Ionising): ").lower()
 
-    shift = horspool_preprocess(pattern, m)
+    for pattern in patterns.split(','):
+        m = len(pattern)
 
-    # iterate through lines (index of the line)
-    for i in range(len(lines)):
-        result = []
-        line = lines[i]
-        n = len(line)
-        horspool_search(line.lower(), n, pattern, m, shift, result)
-        if result:
-            line = line.split(' ', 1)  # separate the module code from the module name
-            matches = len(result)
-            total_matches += matches
-            # Adds search results as rows as in the below format
-            # results.append([line_no, code, name, matches, result:(x, y, ...)])
-            results.append([i + 1, line[0], line[1], matches, result])
+        shift = horspool_preprocess(pattern, m)
+
+        # iterate through lines (index of the line)
+        for i in range(len(lines)):
+            result = []
+            line = lines[i]
+            n = len(line)
+            horspool_search(line.lower(), n, pattern, m, shift, result)
+
+            if result:
+                # separate the module code from the module name
+                line = line.split(' ', 1)
+                matches = len(result)
+                total_matches += matches
+
+                # if the search string is already in the dictionary
+                if i in results:
+                    old_result = results[i]
+                    results.update({i: [i + 1, line[0], line[1], old_result[3] + matches, old_result[4] + result]})
+                else:
+                    # Adds search results as rows as in the below format
+                    # results.append([line_no, code, name, matches, result:(x, y, ...)])
+                    results[i] = [i + 1, line[0], line[1], matches, result]
 
     # Print the results in table format using tabulate module
     headers = ['Line', 'Module Code', 'Module Name', 'Matches', 'Indices']
-    print(tabulate(results, headers, tablefmt="fancy_grid"))
+    print(tabulate(results.values(), headers, tablefmt="fancy_grid"))
     print(tabulate([['Total Word Matches', total_matches]], ['Total Lines Found   ', len(results)],
                    tablefmt="fancy_grid"))
