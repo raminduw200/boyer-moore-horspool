@@ -6,7 +6,7 @@ Date: 2022-07-20
 # Setting up the env and execution
 
 Before executing the code, please run the below command in a shell/terminal/cmd of a python pip installed computer. 
-If Python is not installed, install **Python 3.10** from the official website.
+If Python is not installed, install **Python 3.10.5** from the official website.
 
 > ```pip install -r requirements.txt```
 
@@ -15,12 +15,13 @@ Run below command to execute the script.
 
 > ```python main.py```
 
-## Requirements
+## Tested Environment
 
-- Python 3+ 
-  - Coded version: 3.10
-- tabulate module (this will install once you run the above shell command)
-  - Used version 0.8.10
+- Python version: 3.10.5
+- tabulate module version: 0.8.10 (Added in the requirements.txt)
+- Operating System: Linux Manjaro 
+- IDE: PyCharm
+
 
 # Boyer-Moore-Horspool algorithm
 
