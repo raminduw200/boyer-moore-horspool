@@ -11,6 +11,11 @@ import matplotlib.pyplot as plt
 c = 256  # Number of characters in the alphabet
 
 
+# TODO: Comment the code.
+# TODO: update readme
+# TODO: Take user input
+
+
 # Preprocess pattern
 def horspool_preprocess(pattern_, m_):
     shift_ = [m_] * c
@@ -40,7 +45,7 @@ if __name__ == '__main__':
     lines = f.readlines()
     f.close()
 
-    pattern = 'Practice'.lower()
+    pattern = input("Enter a search string: ").lower()
     m = len(pattern)
 
     shift = horspool_preprocess(pattern, m)
@@ -49,7 +54,6 @@ if __name__ == '__main__':
         result = []
         line = lines[i]
         n = len(line)
-        print(pattern.lower() in line.lower())
         horspool_search(line.lower(), n, pattern, m, shift, result)
         if result:
             line = line.split(' ', 1)
