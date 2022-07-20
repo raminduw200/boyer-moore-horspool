@@ -7,6 +7,8 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{hyperref}
+\usepackage{listings}
+
 \linespread{1.25} % about 1.5 spacing in Word
 \setlength{\parindent}{0pt} % no paragraph indents
 \setlength{\parskip}{1em} % paragraphs separated by one line
@@ -191,16 +193,17 @@ Referred lecture notes and external sources such as \textit{\underline{ \href{ht
 \begin{algorithm}
 	\caption{The Boyer-Moore-Horspool algorithm}
 	\begin{algorithmic}[1]
-    	\Function{Horspool}{txt, pattern}
-    	    \State $n \leftarrow$ length of the text
-    	    \State $m \leftarrow$ length of the pattern
+    	\Function{Horspool-Preprocess}{pattern, m}
     		\For {$i=0,1,\ldots,\Sigma$}
     		    \State shift[$i]\leftarrow$m
     	    \EndFor
     	    \For {$i=0,1,\ldots,$m-1}
     		    \State shift[pattern[$i]]\leftarrow$m-$i-1$
     	    \EndFor
-
+    	    \State return shift
+    	\EndFunction
+    	\State
+    	\Function{Horspool-Search}{txt, n, pattern, m}
     	    \State $position_{txt} \leftarrow$ 0
     	    \While {$position_{txt} + m <= n$}
     	        \If {$txt[position_{txt} + m -1] = pattern[m-1]$}
@@ -244,6 +247,36 @@ Need to enter multiple strings separated by a \textbf{comma(,)}. There are \text
 \newpage
 
 For to get the output as shown above a third party library, tabulate being used. Haven't any other libraries and this is used only for the output formatting.
+
+\subsection{Quality Practices}
+\begin{itemize}
+    \item Keep white spaces in the code for readability.
+
+    \item Consider the perfomance of the code.
+    \begin{itemize}
+        \item Example: Pre-processing part took out of the Horspool algorithm to execute it once instead of execute it when reading a new line each time.
+    \end{itemize}
+
+    \item Use reusable functions. OOP is not being used here since not applicable/necessary.
+
+    \item Follow the commenting standard in Python. In addition to that write a summary of the code in a point form at the begining of the code and refer the point later in the code putting a comment with the number of the point in-front of the code line.
+    \begin{lstlisting}[language=Python]
+    # Preprocess pattern
+    def horspool_preprocess(pattern_, m_):
+        """
+        Preprocess the pattern into shift array.
+        1. Fill the array with the length of the pattern...
+        2. ...
+        :param pattern_: pattern which needs to search in the text.
+        :param m_: length of the pattern.
+        :return: shift array/preprocessed array...
+        """
+    \end{lstlisting}
+
+    \item Constructed a git repository for version controlling.
+
+    \item Use latex for documentation.
+\end{itemize}
 
 \newpage
 
