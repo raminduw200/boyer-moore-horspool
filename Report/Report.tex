@@ -224,15 +224,26 @@ Referred lecture notes and external sources such as \textit{\underline{ \href{ht
 Used Python to implement the Boyer-Moore-Horspool algorithm. There are several reasons to choose the Python language. Python is widely used for data analytics, big data, and data science. Since here dealing with a large dataset, it is easy to visualise the output in many forms, such as different types of graphs and tables.
 
 \subsection{Output}
-The script required a single input from the user; a string to be searched in the "modules" dataset. After the execution, it will display the results in a table containing the line number of the matching string, module code, module name, number of matches in the same line, and the indices of the matches for that particular line. At the end, it will give a summary with the number of total occurrences and the number of total lines matched. The output for the input "Informatics" is shown below.
+The script required a single input from the user; a string to be searched in the "modules" dataset. After the execution, it will display the results in a table containing the line number of the matching string, module code, module name, number of matches in the same line, and the indices of the matches for that particular line. At the end, it will give a summary with the number of total occurrences and the number of total lines matched. The output for the input "Safety" is shown below.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=14cm]{./images/output-ss.png}
-\caption{Script output for "Informatics" in modules.txt dataset}\label{output1}
+\includegraphics[width=14cm]{./images/output-ss-single-input.png}
+\caption{Script output for "Safety" in modules.txt dataset}\label{output1}
 \end{figure}
 
-For to get the output as shown above a third party library, tabulate being used. Haven't any other libraries and this is used only for the ouput formatting.
+\textbf{This supports multiple string searches} as shown in the next page.
+Need to enter multiple strings separated by a \textbf{comma(,)}. There are \textbf{no spaces before or after the separator(,). If the user has entered a space, that will count for searching in the text.}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=14cm]{./images/output-ss-multi-input.png}
+\caption{Script output for "Imaging and Ionising" in modules.txt dataset}\label{output1}
+\end{figure}
+
+\newpage
+
+For to get the output as shown above a third party library, tabulate being used. Haven't any other libraries and this is used only for the output formatting.
 
 \newpage
 
